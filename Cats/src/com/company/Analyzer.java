@@ -144,25 +144,15 @@ public class Analyzer {
         File file = new File(outputFileName);
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write("# id,brand\n");
+        double sum1=0;
+        double sum2=middleValue[1][0]+middleValue[1][1]+middleValue[1][2]+middleValue[1][3];
         for (int i=0;i<cats.size();i++) {
-            //fileWriter.write(i +",");
-            if (cats.get(i).getAge()>=middleValue[1][0]) {
+            fileWriter.write(i +",");
+            sum1+=cats.get(i).getAge()+cats.get(i).getMass()+cats.get(i).getSleep()+cats.get(i).getxSound();
+            if(sum2<=sum1)
                 fileWriter.write(1 + "\n");
-                System.out.println(cats.get(i).getAge() + " " + cats.get(i).getMass() + " " + cats.get(i).getxSound()
-                        + " " + cats.get(i).getSleep() + " 1");
-                continue;
-            }
-                else if (cats.get(i).getMass()>=middleValue[1][1]) {
-                        fileWriter.write(1+"\n" );
-                        System.out.println(cats.get(i).getAge() + " " + cats.get(i).getMass() + " " + cats.get(i).getxSound()
-                        + " " + cats.get(i).getSleep() + " 1");
-                        continue;
-                }
-                    else {
-                fileWriter.write(0+"\n" );
-                System.out.println(cats.get(i).getAge() + " " + cats.get(i).getMass() + " " + cats.get(i).getxSound()
-                        + " " + cats.get(i).getSleep() + " 0");
-            }
+            else fileWriter.write(0+"\n");
+            sum1 = 0;
         }
         fileWriter.close();
     }
